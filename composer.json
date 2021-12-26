@@ -1,0 +1,7 @@
+{
+    "name": "bariscodefx/xash-php",
+    "description": "Xash3D FWGS Server Software written in PHP",
+    "type": "project",
+    "license": "GPLv3",
+    "require": {}
+}
