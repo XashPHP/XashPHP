@@ -3,5 +3,10 @@
     "description": "Xash3D FWGS Server Software written in PHP",
     "type": "project",
     "license": "GPLv3",
-    "require": {}
+    "require": {},
+    "autoload": {
+    	"psr-4": {
+    		"XashPHP\\": "src/XashPHP/"
+    	}
+    }
 }
