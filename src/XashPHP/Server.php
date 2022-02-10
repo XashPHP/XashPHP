@@ -25,18 +25,49 @@
 
 declare(strict_types=1);
 
-namespace XashPHP\utils;
+namespace XashPHP;
 
-use function \echo;
+use XashPHP\config\Config;
+use XashPHP\UtilsLoader;
+use XashPHP\utils\Logger;
+use function socket_create;
 
-class Logger {
+class Server
+{
+
+	private \Socket $sock;
+
+	private string $address;
+	private int $port;
+
+	private $logger;
+
+	public function __construct()
+	{
+		set_time_limit(0);
+		$this->address = 'localhost';
+		$this->port = 27015;
+		$this->logger = new Logger();
+		$server = new Config("server.yml", Config::YAML, [
+			"ip" => "test",
+			"port" => 27015
+		]);
+		$server->close();
+	}
 	
-	public function Info(string $msg) {
-		echo("[Server/Info] " . $msg . PHP_EOL);
+	public function spawn(){
+		$this->UtilsLoader = new UtilsLoader($this);
+		$sock = socket_create(AF_INET, SOCK_STREAM, 0);
+		socket_bind($sock, $this->address, $this->port) or die('Could not bind to address');
+		socket_listen($sock);
+		/*while(true) // main server loop
+		{
+			sleep(1);
+		}*/
 	}
 
-	public function Error(string $msg) {
-		echo("[Critical/Error] " . $msg . PHP_EOL);
+	public function getLogger(){
+		return $this->logger;
 	}
 	
 }

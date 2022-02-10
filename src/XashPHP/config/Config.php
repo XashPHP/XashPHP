@@ -23,20 +23,24 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-declare(strict_types=1);
+namespace XashPHP\config;
 
-namespace XashPHP\utils;
+class Config {
 
-use function \echo;
+    const YAML = 1;
 
-class Logger {
-	
-	public function Info(string $msg) {
-		echo("[Server/Info] " . $msg . PHP_EOL);
-	}
+    public $file;
 
-	public function Error(string $msg) {
-		echo("[Critical/Error] " . $msg . PHP_EOL);
-	}
-	
+    public function __construct(string $path, int $type, array $default = []){
+        if(!file_exists($path)){
+            $this->file = fopen($path, "w");
+            fwrite($this->file, yaml_emit($default));
+        }
+        $this->file = fopen($path, "a+");
+    }
+    
+    public function close(){
+        fclose($this->file);
+    }
+
 }

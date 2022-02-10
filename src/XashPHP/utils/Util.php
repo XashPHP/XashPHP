@@ -27,16 +27,22 @@ declare(strict_types=1);
 
 namespace XashPHP\utils;
 
-use function \echo;
+use XashPHP\Server;
 
-class Logger {
-	
-	public function Info(string $msg) {
-		echo("[Server/Info] " . $msg . PHP_EOL);
-	}
+class Util {
 
-	public function Error(string $msg) {
-		echo("[Critical/Error] " . $msg . PHP_EOL);
-	}
-	
+    private Server $server;
+
+    public function __construct(Server $server){
+        $this->server = $server;
+        $this->onRun();
+    }
+
+    public function getServer(){
+        return $this->server;
+    }
+
+    public function onRun(){
+    }
+
 }
