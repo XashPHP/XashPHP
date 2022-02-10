@@ -2,7 +2,7 @@
     "name": "bariscodefx/xash-php",
     "description": "Xash3D FWGS Server Software written in PHP",
     "type": "project",
-    "license": "GPLv3",
+    "license": "GPL-3.0-only",
     "require": {},
     "autoload": {
     	"psr-4": {
