@@ -32,11 +32,11 @@ use function \echo;
 class Logger {
 	
 	public function Info(string $msg) {
-		echo("[Server/Info] " . $msg . PHP_EOL);
+		echo("[Server/Info][" . date("d/m/Y H:i:s") . "] " . $msg . PHP_EOL);
 	}
 
 	public function Error(string $msg) {
-		echo("[Critical/Error] " . $msg . PHP_EOL);
+		echo("[Critical/Error][" . date("d/m/Y H:i:s") . "] " . $msg . PHP_EOL);
 	}
 	
 }
